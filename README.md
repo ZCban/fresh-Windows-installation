@@ -9,6 +9,7 @@ This repository contains a batch script designed to automate the setup and confi
 - **PowerShell Script Execution Policy**: Unrestricts the PowerShell script execution policy to allow scripts to run.
 - **Chocolatey Installation**: Checks for and installs Chocolatey, a package manager for Windows.
 - **WinGet and Dependencies**: Installs the Windows package manager 'WinGet' along with its dependencies.
+-  **FFmpeg**
 - **Visual C++ Redistributables**: Installs all versions of Visual C++ Redistributables from 2005 to 2015+.
 - **DirectX and .NET Framework**: Ensures essential components like DirectX and .NET Framework 4.5.1 are installed.
 - **Python and Libraries**: Installs Python 3.11 and a wide range of Python libraries from a `requirements.txt` file.
