@@ -9,11 +9,11 @@ echo Esecuzione degli script PowerShell sbloccata senza restrizioni.
 
 
 @echo off
-REM Controlla se Chocolatey Ë gi‡ installato
+REM Controlla se Chocolatey √® gi√† installato
 powershell -Command "Get-Command choco -ErrorAction SilentlyContinue" >nul 2>&1
 
 IF %ERRORLEVEL% EQU 0 (
-    echo Chocolatey Ë gi‡ installato.
+    echo Chocolatey √® gi√† installato.
 ) ELSE (
     echo Installazione di Chocolatey...
     powershell -NoProfile -ExecutionPolicy Bypass -Command "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))"
@@ -48,10 +48,10 @@ echo Scaricato %vclibs_file%
 powershell -Command "Start-BitsTransfer -Source '%xaml_url%' -Destination '%xaml_file%'"
 echo Scaricato %xaml_file%
 
-:: Controlla se una versione pi˘ recente di Microsoft.VCLibs Ë gi‡ installata
+:: Controlla se una versione pi√π recente di Microsoft.VCLibs √® gi√† installata
 powershell -Command "Get-AppxPackage -Name Microsoft.VCLibs.140.00.UWPDesktop | Out-Null"
 if %errorlevel%==0 (
-    echo Microsoft.VCLibs.x64.14.00.Desktop Ë gi‡ installato. Skip installazione.
+    echo Microsoft.VCLibs.x64.14.00.Desktop √® gi√† installato. Skip installazione.
 ) else (
     powershell -Command "Add-AppxPackage %vclibs_file%"
     echo Installato %vclibs_file%
@@ -74,7 +74,7 @@ echo Rimosso %vclibs_file%
 powershell -Command "Remove-Item %xaml_file%"
 echo Rimosso %xaml_file%
 
-:: Verifica se %UserProfile%\AppData\Local\Microsoft\WindowsApps Ë nel PATH
+:: Verifica se %UserProfile%\AppData\Local\Microsoft\WindowsApps √® nel PATH
 echo Verifica del PATH...
 
 set "windows_apps_path=%UserProfile%\AppData\Local\Microsoft\WindowsApps"
@@ -91,17 +91,17 @@ if "%path_found%"=="false" (
     setx PATH "%PATH%;%windows_apps_path%"
     echo Percorso aggiunto al PATH.
 ) else (
-    echo %windows_apps_path% Ë gi‡ presente nel PATH.
+    echo %windows_apps_path% √® gi√† presente nel PATH.
 )
 
-:: Controlla se WinGet Ë installato
+:: Controlla se WinGet √® installato
 powershell -Command "Get-Command winget | Out-Null"
 if %errorlevel%==0 (
     :: Aggiorna le sorgenti di winget
     powershell -Command "winget source update"
     echo Aggiornate le sorgenti di winget
 ) else (
-    echo WinGet non Ë stato installato correttamente o non Ë nel PATH.
+    echo WinGet non √® stato installato correttamente o non √® nel PATH.
 )
 
 echo Installazione completata!
@@ -135,6 +135,9 @@ winget install Microsoft.DirectX -e --accept-source-agreements
 :: Installazione di .NET Framework
 echo Installazione del .NET Framework 4.5.1...
 winget install Microsoft.DotNet.Framework.DeveloperPack_4 -e --accept-source-agreements
+
+echo Installazione del FFmpeg...
+winget install --id=Gyan.FFmpeg  -e --accept-source-agreements
 
 echo Installazione di Python 3.11...
 winget install Python.Python.3.11 -e --accept-source-agreements
